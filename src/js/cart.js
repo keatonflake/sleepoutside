@@ -1,15 +1,28 @@
-import { getLocalStorage } from './utils.mjs';
+import { getLocalStorage } from "./utils.mjs";
 
 function renderCartContents() {
-  const cartItems = getLocalStorage('so-cart') || []; // Default to an empty array if getLocalStorage returns falsy value
-  if (Array.isArray(cartItems)) { // Check if cartItems is an array
-    const htmlItems = cartItems.map((item) => cartItemTemplate(item));
-    document.querySelector('.product-list').innerHTML = htmlItems.join('');
-    
+  const cartItems = getLocalStorage("so-cart");
+  let transformedCartItems;
+
+  // Check if cartItems is an array
+  if (!Array.isArray(cartItems)) {
+    // If cartItems is not an array, convert it to an array
+    const cartItemsArray = cartItems ? [cartItems] : [];
+    // Now you can use map() safely on cartItemsArray
+    transformedCartItems = cartItemsArray.map((item) => {
+      // Transformation logic
+      return cartItemTemplate(item);
+    });
+  } else {
+    // If cartItems is already an array, you can directly use map() on it
+    transformedCartItems = cartItems.map((item) => {
+      // Transformation logic
+      return cartItemTemplate(item);
+    });
   }
-  //   console.error('Invalid cart data:', cartItems);
-  //   // Handle the case when cartItems is not an array
-  // }
+
+  // Set the innerHTML after mapping is done
+  document.querySelector(".product-list").innerHTML = transformedCartItems.join("");
 }
 
 function cartItemTemplate(item) {
