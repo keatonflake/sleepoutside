@@ -7,6 +7,12 @@ function renderCartContents() {
 }
 
 function cartItemTemplate(item) {
+  let productPrice = item.ListPrice;
+  let numOfProducts = item.Quantity;
+  let total = productPrice * numOfProducts;
+  console.log(productPrice);
+  console.log(numOfProducts);
+
   const newItem = `<li class="cart-card divider">
   <a href="#" class="cart-card__image">
     <img
@@ -18,8 +24,8 @@ function cartItemTemplate(item) {
     <h2 class="card__name">${item.Name}</h2>
   </a>
   <p class="cart-card__color">${item.Colors[0].ColorName}</p>
-  <p class="cart-card__quantity">${item.Quantity} </p>
-  <p class="cart-card__price">$${item.FinalPrice}</p>
+  <p class="cart-card__quantity"> Quantity: ${item.Quantity} </p>
+  <p class="cart-card__price">$${total}</p>
 </li>`;
 
   return newItem;

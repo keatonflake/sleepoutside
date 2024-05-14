@@ -5,16 +5,27 @@ let currentProducts = getLocalStorage("so-cart") || [];
 
 export default async function productDetails(productId, selector) {
   let newProduct = await findProductById(productId);
-  //get current pruducts in local storage and add it to a new array with the new product
-  currentProducts.push(newProduct);
+  
+  let index = currentProducts.findIndex(product => product.id === newProduct.id);
+  if (index !== -1) {
+    currentProducts[index].Quantity++;
+  } else {
+    newProduct.Quantity = 1;
+    currentProducts.push(newProduct);
+  }
   const el = document.querySelector(selector);
   el.insertAdjacentHTML("afterBegin", productDetailsTemplate(newProduct));
-  document.getElementById("addToCart").addEventListener("click", addToCart);
 }
 function addToCart() {
   setLocalStorage("so-cart", currentProducts);
   console.log("clicked");
 }
+
+document.addEventListener("click", function(event) {
+  if (event.target && event.target.id === "addToCart") {
+    addToCart();
+  }
+});
 
 function productDetailsTemplate(newProduct) {
   return `<h3>${newProduct.Brand.Name}</h3>
