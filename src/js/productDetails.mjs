@@ -1,32 +1,35 @@
 import { findProductById } from "./productData.mjs";
-import { setLocalStorage } from "./utils.mjs";
+import { setLocalStorage, getLocalStorage} from "./utils.mjs";
 
-let product = {};
+let currentProducts = getLocalStorage("so-cart") || [];
 
 export default async function productDetails(productId, selector) {
-  product = await findProductById(productId);
+  let newProduct = await findProductById(productId);
+  //get current pruducts in local storage and add it to a new array with the new product
+  currentProducts.push(newProduct);
   const el = document.querySelector(selector);
-  el.insertAdjacentHTML("afterBegin", productDetailsTemplate(product));
+  el.insertAdjacentHTML("afterBegin", productDetailsTemplate(newProduct));
   document.getElementById("addToCart").addEventListener("click", addToCart);
 }
 function addToCart() {
-  setLocalStorage("so-cart", product);
+  setLocalStorage("so-cart", currentProducts);
+  console.log("clicked");
 }
 
-function productDetailsTemplate(product) {
-  return `<h3>${product.Brand.Name}</h3>
-  <h2 class="divider">${product.NameWithoutBrand}</h2>
+function productDetailsTemplate(newProduct) {
+  return `<h3>${newProduct.Brand.Name}</h3>
+  <h2 class="divider">${newProduct.NameWithoutBrand}</h2>
   <img
     class="divider"
-    src="${product.Image}"
-    alt="${product.Name}"
+    src="${newProduct.Image}"
+    alt="${newProduct.Name}"
   />
-  <p class="product-card__price">$${product.FinalPrice}</p>
-  <p class="product__color">${product.Colors[0].ColorName}</p>
+  <p class="product-card__price">$${newProduct.FinalPrice}</p>
+  <p class="product__color">${newProduct.Colors[0].ColorName}</p>
   <p class="product__description">
-  ${product.DescriptionHtmlSimple}
+  ${newProduct.DescriptionHtmlSimple}
   </p>
   <div class="product-detail__add">
-    <button id="addToCart" data-id="${product.Id}">Add to Cart</button>
+    <button id="addToCart" data-id="${newProduct.Id}">Add to Cart</button>
   </div>`;
 }
