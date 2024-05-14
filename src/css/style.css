@@ -202,6 +202,25 @@ button {
   grid-column: 3;
 }
 
+.cart_total{
+  text-align: center;
+  font-size: 1.5em;
+  background-color: rgb(59, 59, 204);
+  color: white;
+  padding: 0.5em;
+}
+
+.blue{
+  background-color: rgb(59, 59, 204);
+  color: white;
+  padding: 0.5em;
+  font-size: .8em;
+}
+
+.hide{
+  display: none;
+}
+
 @media screen and (min-width: 500px) {
   body {
     max-width: 1080px;

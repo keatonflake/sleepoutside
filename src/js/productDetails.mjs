@@ -1,31 +1,43 @@
 import { findProductById } from "./productData.mjs";
-import { setLocalStorage, getLocalStorage} from "./utils.mjs";
-
-let currentProducts = getLocalStorage("so-cart") || [];
+import { setLocalStorage, getLocalStorage } from "./utils.mjs";
 
 export default async function productDetails(productId, selector) {
-  let newProduct = await findProductById(productId);
+  // Get current product object
+  const newProduct = await findProductById(productId);
   
-  let index = currentProducts.findIndex(product => product.id === newProduct.id);
-  if (index !== -1) {
-    currentProducts[index].Quantity++;
+  // Render the product details
+  const el = document.querySelector(selector);
+  el.insertAdjacentHTML("afterBegin", productDetailsTemplate(newProduct));
+
+  // Add event listener for adding to cart
+  el.addEventListener("click", function (event) {
+    if (event.target && event.target.id === "addToCart") {
+      addToCart(newProduct);
+    }
+  });
+}
+
+function addToCart(newProduct) {
+  // Get array from local storage
+  let currentProducts = getLocalStorage("so-cart") || [];
+
+  // Check if product is in array
+  const existingProductIndex = currentProducts.findIndex(product => product.Id === newProduct.Id);
+  
+  if (existingProductIndex !== -1) {
+    // If it is, increment quantity
+    currentProducts[existingProductIndex].Quantity += 1;
   } else {
+    // If not, add it with quantity = 1  
     newProduct.Quantity = 1;
     currentProducts.push(newProduct);
   }
-  const el = document.querySelector(selector);
-  el.insertAdjacentHTML("afterBegin", productDetailsTemplate(newProduct));
-}
-function addToCart() {
-  setLocalStorage("so-cart", currentProducts);
-  console.log("clicked");
-}
 
-document.addEventListener("click", function(event) {
-  if (event.target && event.target.id === "addToCart") {
-    addToCart();
-  }
-});
+  // Update local storage
+  setLocalStorage("so-cart", currentProducts);
+
+  console.log("Product added to cart");
+}
 
 function productDetailsTemplate(newProduct) {
   return `<h3>${newProduct.Brand.Name}</h3>
