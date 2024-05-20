@@ -36,7 +36,7 @@ function addToCart(newProduct) {
   // Update local storage
   setLocalStorage("so-cart", currentProducts);
 
-  console.log("Product added to cart");
+  console.log("Product added to cart, check local storage");
 }
 
 function productDetailsTemplate(newProduct) {

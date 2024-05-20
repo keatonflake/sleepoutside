@@ -33,6 +33,12 @@
     "comma-dangle": 0,
     "max-len": 0,
     "import/extensions": 0,
+    "import/no-unresolved": [
+      2,
+      {
+        "ignore": ["^svelte/store", "@sveltejs/vite-plugin-svelte", "vite"]
+      }
+    ],
     "no-underscore-dangle": 0,
     "consistent-return": 0,
     "radix": 0,
