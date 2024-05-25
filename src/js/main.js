@@ -1,15 +1,9 @@
+import ProductList from "./components/ProductList.svelte";
+import { loadHeaderFooter } from "./utils.mjs";
 
-import ProductList from "./components/ProductList.svelte"
-
-// new ProductList({ target: document.querySelector(".product") })
+loadHeaderFooter();
 
 new ProductList({
-    target: document.querySelector(".products"),
-    props: { category: "tents" },
-    
+  target: document.querySelector(".products"),
+  props: { category: "tents" },
 });
-
-
-
-
-

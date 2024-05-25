@@ -1,5 +1,6 @@
 import { findProductById } from "./productData.mjs";
-import { setLocalStorage, getLocalStorage } from "./utils.mjs";
+import { cartCount } from "./stores.mjs";
+import { setLocalStorage, getLocalStorage, getCartCount } from "./utils.mjs";
 
 export default async function productDetails(productId, selector) {
   // Get current product object
@@ -35,6 +36,9 @@ function addToCart(newProduct) {
 
   // Update local storage
   setLocalStorage("so-cart", currentProducts);
+
+  // update the count
+  cartCount.set(getCartCount());
 
   console.log("Product added to cart, check local storage");
 }
