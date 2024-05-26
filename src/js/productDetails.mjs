@@ -59,4 +59,5 @@ function productDetailsTemplate(newProduct) {
   <div class="product-detail__add">
     <button id="addToCart" data-id="${newProduct.Id}">Add to Cart</button>
   </div>`;
+  
 }
