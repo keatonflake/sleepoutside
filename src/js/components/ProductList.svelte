@@ -5,7 +5,7 @@
     export let category;
 
     let promise = getData(category);
-    console.log('Promise:', promise);
+    console.log('Promise getData:', promise);
 
       // Function to capitalize the first letter
     function capitalizeFirstLetter(string) {

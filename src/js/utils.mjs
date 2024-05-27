@@ -34,7 +34,7 @@ export function getCartCount() {
   getLocalStorage("so-cart")?.forEach(p => {
     q = p.Quantity;
     total = q + total;
-    console.log(total);
+    console.log("total=",total);
   });
   return total;
 }
