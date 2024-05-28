@@ -1,7 +1,10 @@
 <script>
-    import { getLocalStorage } from "../utils.mjs";
+    import { getLocalStorage, decrement  } from "../utils.mjs";
+    // import { Cartcount } from './stores.js';
+
+
     const cartItems = getLocalStorage("so-cart") || [];
-    console.log(cartItems);
+    console.log(cartItems); 
 </script>
 
 
@@ -27,12 +30,12 @@
           <h2 class="card__name">{item.Name}</h2>
         </a>
         <p class="cart-card__color">{item.Colors[0].ColorName}</p>
-        <p class="cart-card__quantity blue"> Quantity: {item.Quantity} </p>
+        <p class="cart-card__quantity blue"> Quantity: {item.Quantity}</p>
         <p class="cart-card__price blue">${(item.ListPrice * item.Quantity).toFixed(2)}</p>
           <div class="cart-card__buttons">
-            <button class="cart-remove" id="removeFromCart" data-id="${item.Id}">Remove</button>
-            <button class="cart-decrease" id="decreaseQuantity" data-id="${item.Id}">➖</button>
-            <button class="cart-increase" id="increaseQuantity" data-id="${item.Id}">➕</button>
+            <!-- <button class="cart-remove" onclick={remove(item.Id)} id="removeFromCart">Remove</button> -->
+            <button class="cart-decrease" onclick={decrement(item.Id)} id="decreaseQuantity">➖</button>
+            <!-- <button class="cart-increase" onclick={increment(item.Id)} id="increaseQuantity">➕</button> -->
           </div>
       </li>
     {/each}

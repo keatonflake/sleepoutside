@@ -1,5 +1,6 @@
 import MainFooter from "./components/MainFooter.svelte";
 import MainHeader from "./components/MainHeader.svelte";
+import { cartCount } from "./stores.mjs";
 
 export function qs(selector, parent = document) {
   return parent.querySelector(selector);
@@ -47,3 +48,39 @@ export function loadHeaderFooter() {
     target: document.querySelector("#main-footer"),
   });
 }
+
+export function decrement(itemId) {
+  // Retrieve the cart from local storage
+  const cart = getLocalStorage("so-cart");
+  if (cart) {
+    // Find the index of the item with the given itemId
+    const itemIndex = cart.findIndex(item => item.Id === itemId);
+    // If the item is found and has a Quantity property greater than 0
+    if (itemIndex !== -1 && cart[itemIndex].Quantity > 0) {
+      // Decrement the quantity
+      cart[itemIndex].Quantity--;
+      // Update the count store
+      cartCount.update(q => q - 1);
+      console.log("cart item decrement", cart);
+      // clear cart if quantity = 0
+      if (cart[itemIndex].Quantity === 0) {
+        cart.splice(itemIndex, 1);
+      }
+      // Update the cart back to local storage
+      setLocalStorage("so-cart", cart);
+    }
+
+    // Update the cart back to local storage
+    setLocalStorage("so-cart", cart);
+
+  }
+}
+
+
+// export function increment() {
+//   count.update((n) => n + 1);
+// }
+
+// export function reset() {
+//   count.remove();
+// }
