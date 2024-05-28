@@ -18,7 +18,8 @@
   <h2>Top Products: {capitalizeFirstLetter(category)}</h2>
 
 {#await promise}
-  <p>Loading...</p>
+  <p>Loading data...</p>
+  <img class="loadingImage" src="../images/loading_image.gif" alt="loading page gif">
 {:then products}
   <ul class="product-list-Home">
     {#each products as product}

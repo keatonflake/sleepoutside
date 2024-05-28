@@ -218,6 +218,8 @@ ul.product-list-Home{
   height: auto;
   display: block;
   margin-bottom: 15px;
+  background-image: transparent;
+
 }
 .card__brand {
   font-size: 16px;
@@ -272,6 +274,8 @@ img.divider {
   height: auto;
   border-radius: 5px;
   width: 100%;
+  background-image: transparent;
+
 }
 
 
@@ -427,9 +431,9 @@ font-style: oblique;
 
   html{
     scroll-behavior: smooth;
-    border: #f0a868 1px solid;
-    max-width: 1000px;
-    background-color: #525b0f;
+    /* border: #f0a868 1px solid; */
+    /* max-width: 1000px; */
+    /* background-color: #525b0f; */
   }
 
 }
@@ -440,3 +444,14 @@ footer {
 }
 
 
+/* loading image gif  for product list page */
+
+.loadingImage {
+  /* display: block;
+  margin-left: auto;
+  margin-right: auto; */
+  margin: 0 auto;
+  width: 100%;
+  height: auto;
+  background-image: transparent;
+}
