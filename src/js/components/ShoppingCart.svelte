@@ -4,8 +4,15 @@
     console.log(cartItems);
 </script>
 
-  <h2>Shopping Cart</h2>
-  
+
+<section class="Section-headerHr">
+  <h2 class="shopping-cartHeader">Shopping Cart</h2>
+  <div class="hr-container">
+    <span class="price-text">Price</span>
+    <hr class="custom-hr">
+  </div>
+</section>
+
 <div class="cart-container">
   <ul class="product-list">
     {#each cartItems as item}

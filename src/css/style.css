@@ -414,7 +414,8 @@ font-style: oblique;
 
 @media screen and (min-width: 500px) {
   body {
-    max-width: 1080px;
+    /* max-width: 1080px; */
+    max-width: 1000px;
     margin: auto;
   }
   .mission {
@@ -447,11 +448,43 @@ footer {
 /* loading image gif  for product list page */
 
 .loadingImage {
-  /* display: block;
-  margin-left: auto;
-  margin-right: auto; */
   margin: 0 auto;
-  width: 100%;
+  display: block;
+  width: 50%;
   height: auto;
   background-image: transparent;
+}
+
+
+/* shopper cart h2 tag styling */
+.Section-headerHr {
+  position: relative;
+}
+
+.hr-container {
+  position: relative;
+  margin-top: 20px; 
+}
+
+.price-text {
+  position: absolute;
+  right: 0;
+  top: -1.2em; 
+  background-color: white; 
+  padding: 0 5px; 
+  font-weight: bold;
+  font-size: 1.2em;
+  color: black;
+  width: 104px;
+  /* text-align: center; */
+
+}
+
+.custom-hr {
+  width: 90%;
+  border: none;
+  margin: 0 auto; 
+  max-width: 1000px;
+  border-top: 0px solid #f0a868;
+
 }
