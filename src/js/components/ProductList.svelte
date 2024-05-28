@@ -5,7 +5,7 @@
     export let category;
 
     let promise = getData(category);
-    console.log('Promise:', promise);
+    console.log('Promise getData:', promise);
 
       // Function to capitalize the first letter
     function capitalizeFirstLetter(string) {
@@ -13,13 +13,15 @@
     }
     </script>
     
-<!-- <h2>Top Products: {category}</h2> -->
-<h2>Top Products: {capitalizeFirstLetter(category)}</h2>
+<section class="products-container">
+  <!-- <h2>Top Products: {category}</h2> -->
+  <h2>Top Products: {capitalizeFirstLetter(category)}</h2>
 
 {#await promise}
-  <p>Loading...</p>
+  <p>Loading data...</p>
+  <img class="loadingImage" src="../images/loading_image.gif" alt="loading page gif">
 {:then products}
-  <ul class="product-list">
+  <ul class="product-list-Home">
     {#each products as product}
       <li class="product-card">
         <a href={`product_pages/index.html?product=${product.Id}`}>
@@ -38,3 +40,5 @@
 {console.log('Error:', error)}
   <p>Error loading products: {error.message}</p>
 {/await}
+
+</section>

@@ -29,7 +29,7 @@ function addToCart(newProduct) {
     // If it is, increment quantity
     currentProducts[existingProductIndex].Quantity += 1;
   } else {
-    // If not, add it with quantity = 1  
+    // If not, add it with quantity = 1
     newProduct.Quantity = 1;
     currentProducts.push(newProduct);
   }
@@ -43,8 +43,10 @@ function addToCart(newProduct) {
   console.log("Product added to cart, check local storage");
 }
 
+
 function productDetailsTemplate(newProduct) {
-  return `<h3>${newProduct.Brand.Name}</h3>
+  return `  <div class="product-card-detail">
+  <h3 class="product-card__brand">${newProduct.Brand.Name}</h3>
   <h2 class="divider">${newProduct.NameWithoutBrand}</h2>
   <img
     class="divider"
@@ -54,9 +56,11 @@ function productDetailsTemplate(newProduct) {
   <p class="product-card__price">$${newProduct.FinalPrice}</p>
   <p class="product__color">${newProduct.Colors[0].ColorName}</p>
   <p class="product__description">
-  ${newProduct.DescriptionHtmlSimple}
+    ${newProduct.DescriptionHtmlSimple}
   </p>
   <div class="product-detail__add">
     <button id="addToCart" data-id="${newProduct.Id}">Add to Cart</button>
-  </div>`;
+  </div>
+</div>`;
 }
+
