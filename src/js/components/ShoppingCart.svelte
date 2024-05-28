@@ -1,10 +1,21 @@
 <script>
+  import { cartCount } from "../stores.mjs";
     import { getLocalStorage, decrement  } from "../utils.mjs";
     // import { Cartcount } from './stores.js';
 
+const cartItems = getLocalStorage("so-cart") || [];
 
-    const cartItems = getLocalStorage("so-cart") || [];
-    console.log(cartItems); 
+// this function is to find the product Id in the cart and decrement the quantity 
+// from the cart and cartCount
+   
+// function handleDecrement(id){
+// const existingProductIndex = currentProducts.findIndex(product => product.id === newProduct.id);
+
+// // decriment the quantity
+
+// decrement(id);
+// }
+console.log(cartItems); 
 </script>
 
 
@@ -34,7 +45,12 @@
         <p class="cart-card__price blue">${(item.ListPrice * item.Quantity).toFixed(2)}</p>
           <div class="cart-card__buttons">
             <!-- <button class="cart-remove" onclick={remove(item.Id)} id="removeFromCart">Remove</button> -->
+
+            <!-- pending handleDecrement function to call increment  -->
+            <!-- <button class="cart-decrease" onclick={handleDecrement(item.Id)} id="decreaseQuantity">➖</button> -->
+
             <button class="cart-decrease" onclick={decrement(item.Id)} id="decreaseQuantity">➖</button>
+
             <!-- <button class="cart-increase" onclick={increment(item.Id)} id="increaseQuantity">➕</button> -->
           </div>
       </li>

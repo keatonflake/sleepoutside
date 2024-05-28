@@ -9,10 +9,12 @@ export function qs(selector, parent = document) {
 export function getLocalStorage(key) {
   return JSON.parse(localStorage.getItem(key));
 }
+
 // save data to local storage
 export function setLocalStorage(key, data) {
   localStorage.setItem(key, JSON.stringify(data));
 }
+
 // set a listener for both touchend and click
 export function setClick(selector, callback) {
   qs(selector).addEventListener("touchend", (event) => {
@@ -27,18 +29,19 @@ export function getParam(param) {
   const urlParams = new URLSearchParams(queryString);
   return urlParams.get(param);
 }
+
 export function getCartCount() {
-  // const count = getLocalStorage("so-cart")?.length ?? 0;
   let total = 0;
   let q;
 
   getLocalStorage("so-cart")?.forEach(p => {
     q = p.Quantity;
     total = q + total;
-    console.log("total=",total);
+    console.log("total=", total);
   });
   return total;
 }
+
 export function loadHeaderFooter() {
   new MainHeader({
     target: document.querySelector("#main-header"),
@@ -62,19 +65,22 @@ export function decrement(itemId) {
       // Update the count store
       cartCount.update(q => q - 1);
       console.log("cart item decrement", cart);
-      // clear cart if quantity = 0
+      // Remove the item from the cart if quantity is 0
       if (cart[itemIndex].Quantity === 0) {
         cart.splice(itemIndex, 1);
       }
       // Update the cart back to local storage
       setLocalStorage("so-cart", cart);
+      // Reload the page to refresh the cart count in the UI
+      // window.location.reload();
+    } else {
+      console.log("Item not found or quantity already at 0");
     }
-
-    // Update the cart back to local storage
-    setLocalStorage("so-cart", cart);
-
+  } else {
+    console.log("Cart is empty");
   }
 }
+
 
 
 // export function increment() {
