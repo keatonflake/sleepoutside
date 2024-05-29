@@ -10,12 +10,12 @@ export function getLocalStorage(key) {
   return JSON.parse(localStorage.getItem(key));
 }
 
-// save data to local storage
+// Save data to local storage
 export function setLocalStorage(key, data) {
   localStorage.setItem(key, JSON.stringify(data));
 }
 
-// set a listener for both touchend and click
+// Set a listener for both touchend and click
 export function setClick(selector, callback) {
   qs(selector).addEventListener("touchend", (event) => {
     event.preventDefault();
@@ -32,12 +32,8 @@ export function getParam(param) {
 
 export function getCartCount() {
   let total = 0;
-  let q;
-
   getLocalStorage("so-cart")?.forEach(p => {
-    q = p.Quantity;
-    total = q + total;
-    console.log("total=", total);
+    total += p.Quantity;
   });
   return total;
 }
@@ -52,41 +48,60 @@ export function loadHeaderFooter() {
   });
 }
 
-export function decrement(itemId) {
-  // Retrieve the cart from local storage
-  const cart = getLocalStorage("so-cart");
-  if (cart) {
-    // Find the index of the item with the given itemId
-    const itemIndex = cart.findIndex(item => item.Id === itemId);
-    // If the item is found and has a Quantity property greater than 0
-    if (itemIndex !== -1 && cart[itemIndex].Quantity > 0) {
-      // Decrement the quantity
-      cart[itemIndex].Quantity--;
-      // Update the count store
-      cartCount.update(q => q - 1);
-      console.log("cart item decrement", cart);
-      // Remove the item from the cart if quantity is 0
-      if (cart[itemIndex].Quantity === 0) {
+export function removeItem(btn) {
+  const id = btn.dataset.id;
+  let cart = getLocalStorage("so-cart");
+  cart = cart.filter(item => item.Id !== id);
+  setLocalStorage("so-cart", cart);
+  updateCartCount();
+}
+
+export function updateCartItem(itemId, increment = true) {
+  let cart = getLocalStorage("so-cart") || [];
+  const itemIndex = cart.findIndex(item => item.Id === itemId);
+
+  if (itemIndex !== -1) {
+    if (increment) {
+      cart[itemIndex].Quantity++;
+    } else {
+      if (cart[itemIndex].Quantity > 1) {
+        cart[itemIndex].Quantity--;
+      } else {
         cart.splice(itemIndex, 1);
       }
-      // Update the cart back to local storage
-      setLocalStorage("so-cart", cart);
-      // Reload the page to refresh the cart count in the UI
-      // window.location.reload();
-    } else {
-      console.log("Item not found or quantity already at 0");
     }
+    setLocalStorage("so-cart", cart);
+    updateCartCount();
   } else {
-    console.log("Cart is empty");
+    console.log("Item not found in cart");
   }
 }
 
+export function updateCartCount() {
+  cartCount.set(getCartCount());
+}
 
+export function attachEventListeners() {
+  document.querySelectorAll("#removeFromCart").forEach(button => {
+    button.addEventListener("click", (event) => {
+      removeItem(event.currentTarget);
+    });
+  });
 
-// export function increment() {
-//   count.update((n) => n + 1);
-// }
+  document.querySelectorAll("#decreaseQuantity").forEach(button => {
+    button.addEventListener("click", (event) => {
+      const itemId = event.currentTarget.getAttribute("data-id");
+      updateCartItem(itemId, false);
+    });
+  });
 
-// export function reset() {
-//   count.remove();
-// }
+  document.querySelectorAll("#increaseQuantity").forEach(button => {
+    button.addEventListener("click", (event) => {
+      const itemId = event.currentTarget.getAttribute("data-id");
+      updateCartItem(itemId, true);
+    });
+  });
+}
+
+// Call attachEventListeners once the DOM is fully loaded
+document.addEventListener("DOMContentLoaded", attachEventListeners);
