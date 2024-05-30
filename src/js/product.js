@@ -5,5 +5,6 @@ loadHeaderFooter();
 
 
 const productId = getParam("product");
+console.log(productId);
 productDetails(productId, ".product-detail");
 

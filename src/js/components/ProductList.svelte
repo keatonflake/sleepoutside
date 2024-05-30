@@ -23,9 +23,9 @@
       {#if products.length > 0}
         {#each products as product}
           <li class="product-card">
+            <!-- <a href="product_pages/index.html?product=985PR"> -->
             <!-- <a href={`product_pages/index.html?product=${product.Id}`}> -->
-            <a href={`/product_pages/index.html?product=${product.Id}`}>
-              <!-- <a href="product_pages/index.html?product=985PR"> -->
+              <a href="/product_pages/index.html?{category}=tents&product={product.Id}">
               <img src={product.Image} alt={product.Brand["Name"]} />
               <h3 class="card__brand">{product.Brand["Name"]}</h3>
               <h3 class="card__name">{product.NameWithoutBrand}</h3>

@@ -21,6 +21,15 @@ export function getBackpackData(category = "backpacks") {
     .then((data) => data);
 }
 
+
+const baseURL = import.meta.env.VITE_SERVER_URL
+export async function getData(category) {
+  const response = await fetch(baseURL + `products/search/${category}`);
+  const data = await convertToJson(response);
+  return data.Result;
+}
+
+
 // Function to find a product by ID in tents data
 export async function findTentById(id) {
   const products = await getData();
