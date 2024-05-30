@@ -144,6 +144,30 @@ header {
   margin-top: 0%;
 }
 
+/* product icons home */
+.product_offered {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 50px;
+  margin: 55px;
+}
+
+.product_offered div{
+  flex: 1 1 45%;
+  margin: 0.25em;
+  padding: 0.5em;
+  border: 1px solid var(--light-grey);
+  max-width: 250px;
+  text-align: center;
+}
+
+.product_offered div a{
+  text-decoration: none;
+  color: var(--dark-grey);
+}
+
 .product-list a {
   text-decoration: none;
   color: var(--dark-grey);
