@@ -48,10 +48,18 @@ export function loadHeaderFooter() {
   });
 }
 
-export function removeItem(btn) {
-  const id = btn.dataset.id;
-  let cart = getLocalStorage("so-cart");
-  cart = cart.filter(item => item.Id !== id);
+// export function removeItem(btn) {
+//   const id = btn.dataset.Id;
+//   console.log("dataset.Id", id);
+//   let cart = getLocalStorage("so-cart");
+//   cart = cart.filter(item => item.Id !== id);
+//   setLocalStorage("so-cart", cart);
+//   updateCartCount();
+// }
+
+export function removeItem(itemId) {
+  let cart = getLocalStorage("so-cart") || [];
+  cart = cart.filter(item => item.Id !== itemId);
   setLocalStorage("so-cart", cart);
   updateCartCount();
 }
