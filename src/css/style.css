@@ -293,12 +293,16 @@ img.divider {
 }
 
 #addToCart {
-  background-color: #a4b8c4;
-  color: black;
+  background-color: black;
+  color: white;
   border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
+  padding: 18px 45px;
+  border-radius: 10px;
   cursor: pointer;
+  font-size: 16px;
+  text-decoration: none;
+  font-weight: bold;
+  text-align: center;
   transition: background-color 0.3s ease;
 }
 
@@ -487,4 +491,37 @@ footer {
   max-width: 1000px;
   border-top: 0px solid #f0a868;
 
+}
+
+
+/* home page category Section for product list page  */
+.productsCategory {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  padding: 20px;
+}
+
+.categoryTents, .categorySleepingBag, .categoryBackpacks, .categoryHammock {
+  text-align: center;
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 10px;
+  transition: transform 0.3s;
+}
+
+.category-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.categoryTents img, .categorySleepingBag img, .categoryBackpacks img, .categoryHammock img {
+  width: 100px;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+.categoryTents:hover, .categorySleepingBag:hover, .categoryBackpacks:hover, .categoryHammock:hover {
+  transform: scale(1.05);
 }
