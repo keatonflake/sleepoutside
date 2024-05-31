@@ -41,7 +41,6 @@
         <div class="cart-card__buttons">
           <!-- <button class="cart-remove" data-id={item.Id} id="removeFromCart">Remove</button> -->
           <button class="cart-remove" on:click={() => handleRemoveItem(item.Id)} id="removeFromCart">Remove</button>
-          <!-- <button class="cart-remove" on:click={() => handleRemoveItem(item.Id)}>Remove</button> -->
           <button class="cart-decrease" on:click={() => handleUpdateCartItem(item.Id, false)} id="decreaseQuantity">➖</button>
           <button class="cart-increase" on:click={() => handleUpdateCartItem(item.Id, true)} id="increaseQuantity">➕</button>
         </div>

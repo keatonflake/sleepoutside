@@ -1,10 +1,10 @@
-import { findTentById } from "./productData.mjs";
+import { findProductById } from "./productData.mjs";
 import { cartCount } from "./stores.mjs";
 import { setLocalStorage, getLocalStorage, getCartCount } from "./utils.mjs";
 
 export default async function productDetails(productId, selector) {
   // Get current product object
-  const newProduct = await findTentById(productId);
+  const newProduct = await findProductById(productId);
   
   // Render the product details
   const el = document.querySelector(selector);
@@ -63,4 +63,3 @@ function productDetailsTemplate(newProduct) {
   </div>
 </div>`;
 }
-

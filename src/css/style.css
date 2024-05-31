@@ -144,30 +144,6 @@ header {
   margin-top: 0%;
 }
 
-/* product icons home */
-.product_offered {
-  list-style: none;
-  padding: 0;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 50px;
-  margin: 55px;
-}
-
-.product_offered div{
-  flex: 1 1 45%;
-  margin: 0.25em;
-  padding: 0.5em;
-  border: 1px solid var(--light-grey);
-  max-width: 250px;
-  text-align: center;
-}
-
-.product_offered div a{
-  text-decoration: none;
-  color: var(--dark-grey);
-}
-
 .product-list a {
   text-decoration: none;
   color: var(--dark-grey);
@@ -524,6 +500,7 @@ footer {
   grid-template-columns: repeat(4, 1fr);
   gap: 20px;
   padding: 20px;
+  width: 100%;
 }
 
 .categoryTents, .categorySleepingBag, .categoryBackpacks, .categoryHammock {
@@ -534,18 +511,35 @@ footer {
   transition: transform 0.3s;
 }
 
-.category-link {
-  text-decoration: none;
-  color: inherit;
-  display: block;
-}
-
-.categoryTents img, .categorySleepingBag img, .categoryBackpacks img, .categoryHammock img {
-  width: 100px;
+img.category-link {
+  width: 100%;
   height: auto;
-  margin-bottom: 10px;
+  /* margin-bottom: 10px; */
+  display: block;
 }
 
 .categoryTents:hover, .categorySleepingBag:hover, .categoryBackpacks:hover, .categoryHammock:hover {
   transform: scale(1.05);
+}
+
+.productsCategory h3{
+  /* color: black; */
+  font-weight: bold;
+  font-size: 1.2em;
+  margin-top: 35px;
+  /* text-align: center; */
+}
+
+/* .productsCategory section a{
+  text-decoration: none;
+  color: var(--dark-grey);
+} */
+
+.productsCategory section a:visited, 
+.productsCategory section a:link, 
+.productsCategory section a:active,
+.productsCategory section a:focus,
+.productsCategory section a:hover {
+  text-decoration: none;
+  color: var(--dark-grey);
 }
