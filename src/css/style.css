@@ -144,30 +144,6 @@ header {
   margin-top: 0%;
 }
 
-/* product icons home */
-.product_offered {
-  list-style: none;
-  padding: 0;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 50px;
-  margin: 55px;
-}
-
-.product_offered div{
-  flex: 1 1 45%;
-  margin: 0.25em;
-  padding: 0.5em;
-  border: 1px solid var(--light-grey);
-  max-width: 250px;
-  text-align: center;
-}
-
-.product_offered div a{
-  text-decoration: none;
-  color: var(--dark-grey);
-}
-
 .product-list a {
   text-decoration: none;
   color: var(--dark-grey);
@@ -317,12 +293,16 @@ img.divider {
 }
 
 #addToCart {
-  background-color: #a4b8c4;
-  color: black;
+  background-color: black;
+  color: white;
   border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
+  padding: 18px 45px;
+  border-radius: 10px;
   cursor: pointer;
+  font-size: 16px;
+  text-decoration: none;
+  font-weight: bold;
+  text-align: center;
   transition: background-color 0.3s ease;
 }
 
@@ -511,4 +491,55 @@ footer {
   max-width: 1000px;
   border-top: 0px solid #f0a868;
 
+}
+
+
+/* home page category Section for product list page  */
+.productsCategory {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  padding: 20px;
+  width: 100%;
+}
+
+.categoryTents, .categorySleepingBag, .categoryBackpacks, .categoryHammock {
+  text-align: center;
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 10px;
+  transition: transform 0.3s;
+}
+
+img.category-link {
+  width: 100%;
+  height: auto;
+  /* margin-bottom: 10px; */
+  display: block;
+}
+
+.categoryTents:hover, .categorySleepingBag:hover, .categoryBackpacks:hover, .categoryHammock:hover {
+  transform: scale(1.05);
+}
+
+.productsCategory h3{
+  /* color: black; */
+  font-weight: bold;
+  font-size: 1.2em;
+  margin-top: 35px;
+  /* text-align: center; */
+}
+
+/* .productsCategory section a{
+  text-decoration: none;
+  color: var(--dark-grey);
+} */
+
+.productsCategory section a:visited, 
+.productsCategory section a:link, 
+.productsCategory section a:active,
+.productsCategory section a:focus,
+.productsCategory section a:hover {
+  text-decoration: none;
+  color: var(--dark-grey);
 }
