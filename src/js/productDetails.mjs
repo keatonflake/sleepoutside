@@ -40,9 +40,22 @@ function addToCart(newProduct) {
   // update the count
   cartCount.set(getCartCount());
 
+  growAndShrink();
+
   console.log("Product added to cart, check local storage");
 }
 
+function growAndShrink() {
+  const image = document.getElementById('cart_icon');
+  image.classList.remove('animate');
+  
+  // Force reflow to ensure the animation can restart
+  void image.offsetWidth;
+
+  requestAnimationFrame(() => {
+    image.classList.add('animate');
+  });
+}
 
 function productDetailsTemplate(newProduct) {
   return `  <div class="product-card-detail">
