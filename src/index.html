@@ -6,12 +6,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sleep Outside | Home</title>
   <link rel="stylesheet" href="./css/style.css">
-  <script src="js/main.js" type="module"></script>
+  <script src="./js/main.js" type="module"></script>
+  <script src="./js/alerts.mjs" type="module" defer></script>
+
 </head>
 
 <body>
   <header class="divider" id="main-header"></header>
   <main class="divider">
+    <!--alert container-->
+    <div id="alert-container"></div>
+
     <div class="hero">
       <img src="/images/banner-sm.jpg" srcset="/images/banner-sm.jpg 500w, /images/banner.jpg 1000w" sizes="(max-width: 600px) 500px, 1000px" class="hero-img" alt="image of a high mountain lake">
       <div class="logo logo--square">
@@ -22,7 +27,7 @@
     <section class="mission">
       <h1>Get Outside and Sleep Outdoors</h1>
     </section>
-    <section>
+    <section class="mission-section">
       <h2>We spend too much time indoors these days, usually sitting.</h2>
       <p>No wonder we are a mess!</p>
       <p>
