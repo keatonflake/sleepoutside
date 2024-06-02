@@ -17,7 +17,7 @@
   <!-- <h2>Top Products: {category}</h2> -->
   <h2>Top Products: {capitalizeFirstLetter(category)}</h2>
 
-{#await promise}
+  {#await promise}
   <p>Loading data...</p>
   <img class="loadingImage" src="../images/loading_image.gif" alt="loading page gif">
 {:then products}
@@ -25,7 +25,6 @@
     {#each products as product}
       <li class="product-card">
         <a href={`../../product_pages/index.html?product=${product.Id}`}>
-            <!-- <a href="../../product_pages/index.html"> -->
           <img
             src={product.Images.PrimaryMedium}
             alt={product.Brand["Name"]} />
@@ -37,8 +36,14 @@
     {/each}
   </ul>
 {:catch error}
-{console.log('Error:', error)}
-  <p>Error loading products: {error.message}</p>
+  {#if error.message === 'No project found'}
+    {console.log('No project is found for that item')}
+    <p>No project is found for that item</p>
+  {:else}
+    {console.log('Error:', error)}
+    <p>Error loading products: {error.message}</p>
+  {/if}
 {/await}
+
 
 </section>
