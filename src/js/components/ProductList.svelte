@@ -24,16 +24,14 @@
       src="../images/loading_image.gif"
       alt="loading page gif"
     />
-  {:then products}
+    {:then products}
     <ul class="product-list-Home">
       {#each products as product}
         <li class="product-card">
           <a href={`../../product_pages/index.html?product=${product.Id}`}>
-            <!-- <a href="../../product_pages/index.html"> -->
             <img
               src={product.Images.PrimaryMedium}
-              alt={product.Brand["Name"]}
-            />
+              alt={product.Brand["Name"]} />
             <h3 class="card__brand">{product.Brand["Name"]}</h3>
             <h2 class="card__name">{product.NameWithoutBrand}</h2>
             <p class="product-card__price">${product.ListPrice}</p>
@@ -42,7 +40,12 @@
       {/each}
     </ul>
   {:catch error}
-    {console.log("Error:", error)}
-    <p>Error loading products: {error.message}</p>
+    {#if error.message === 'No project found'}
+      {console.log('No project is found for that item')}
+      <p>No project is found for that item</p>
+    {:else}
+      {console.log('Error:', error)}
+      <p>Error loading products: {error.message}</p>
+    {/if}
   {/await}
 </section>
