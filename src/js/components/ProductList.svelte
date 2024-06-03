@@ -14,13 +14,13 @@
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
 
-  // Alerts
- let alerts = [];
+  // Alert/Promotions
+  let alerts = [];
 
   onMount(async () => {
   const response = await fetch('../json/alerts.json');
   alerts = await response.json();
-  console.log('Alerts:', alerts);
+  console.log('Alert/s:', alerts);
 });
 
 </script>
