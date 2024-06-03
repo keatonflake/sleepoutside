@@ -18,6 +18,7 @@
   <h2>Top Products: {capitalizeFirstLetter(category)}</h2>
 
   {#await promise}
+<<<<<<< HEAD
     <p>Loading data...</p>
     <img
       class="loadingImage"
@@ -46,3 +47,34 @@
     <p>Error loading products: {error.message}</p>
   {/await}
 </section>
+=======
+  <p>Loading data...</p>
+  <img class="loadingImage" src="../images/loading_image.gif" alt="loading page gif">
+{:then products}
+  <ul class="product-list-Home">
+    {#each products as product}
+      <li class="product-card">
+        <a href={`../../product_pages/index.html?product=${product.Id}`}>
+          <img
+            src={product.Images.PrimaryMedium}
+            alt={product.Brand["Name"]} />
+          <h3 class="card__brand">{product.Brand["Name"]}</h3>
+          <h2 class="card__name">{product.NameWithoutBrand}</h2>
+          <p class="product-card__price">${product.ListPrice}</p>
+        </a>
+      </li>
+    {/each}
+  </ul>
+{:catch error}
+  {#if error.message === 'No project found'}
+    {console.log('No project is found for that item')}
+    <p>No project is found for that item</p>
+  {:else}
+    {console.log('Error:', error)}
+    <p>Error loading products: {error.message}</p>
+  {/if}
+{/await}
+
+
+</section>
+>>>>>>> 393fb3ce91efa6403043e02b4e4f9150dbeaa326
