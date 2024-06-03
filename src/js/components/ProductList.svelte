@@ -1,5 +1,7 @@
 <script>
   import { getData } from "../productData.mjs";
+  import { onMount } from 'svelte';
+
 
   // this is how we make a prop in svelte
   export let category;
@@ -11,7 +13,25 @@
   function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
+
+  // Alerts
+ let alerts = [];
+
+  onMount(async () => {
+  const response = await fetch('../json/alerts.json');
+  alerts = await response.json();
+  console.log('Alerts:', alerts);
+});
+
 </script>
+
+{#each alerts as { message, backgroundColor }}
+  <div class="alert" style="background-color: {backgroundColor}">
+    {message}
+  </div>
+{/each}
+
+
 
 <section class="products-container">
   <!-- <h2>Top Products: {category}</h2> -->
