@@ -605,3 +605,46 @@ img.category-link {
   /* width: 50%; */
 
   }
+
+/* News letter styling */
+  .newsletter {
+    background-color: #f9f9f9;
+    padding: 20px;
+    margin-top: 20px;
+    margin-bottom: 80px;
+    border-radius: 5px;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  .newsletter h2 {
+    margin-bottom: 10px;
+  }
+  
+  .newsletter form {
+    margin-bottom: 10px;
+  }
+  
+  .newsletter label {
+    margin-bottom: 5px;
+  }
+  
+  .newsletter input[type="email"] {
+    padding: 10px;
+    /* margin-bottom: 10px; */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .newsletter button {
+    padding: 10px 20px;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .newsletter button:hover {
+    background-color: var(--secondary-color);
+  }
