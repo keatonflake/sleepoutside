@@ -135,7 +135,7 @@ header {
 /* End cart icon styles */
 
 .mission {
-  font-family: "Merriweather", serif; /* or another elegant serif font */
+  font-family: "Merriweather", serif; 
   font-size: 1.2em;
   line-height: 1.5;
   color: #ffffff;
@@ -303,7 +303,16 @@ img.divider {
 .product-detail__add {
   margin-top: 20px;
   display: flex;
-  justify-content: center; /* Centering the button horizontally */
+  justify-content: center; 
+}
+
+.product-card__price.discount {
+  color: red;
+  text-decoration: line-through;
+}
+
+.product-card__price.final_price {
+  color: green;
 }
 
 #addToCart {

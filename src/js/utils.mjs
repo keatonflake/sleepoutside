@@ -38,6 +38,34 @@ export function getCartCount() {
   return total;
 }
 
+// export function getDiscountedPrice(product) {
+//   console.log("20% discount() was called")
+//   console.log(product.FinalPrice) // returns the actual final price
+//   let FinalPrice = product.FinalPrice - (product.FinalPrice * 0.2)
+//   let ListPrice = product.ListPrice
+//   if (!product.isClearance === true) {
+//     return FinalPrice
+//   } else {
+//     return ListPrice;
+//   }
+// }
+
+
+export function getDiscountedPrice(product) {
+  let finalPrice = product.FinalPrice;
+  let listPrice = product.ListPrice;
+  if (product.IsClearance) {
+    console.log("20% discount() was called");
+    console.log(product.FinalPrice);
+    finalPrice = product.FinalPrice - (product.FinalPrice * 0.2);
+  }
+  // If no discount is applied, return the original price
+  return {
+    finalPrice: finalPrice,
+    listPrice: product.IsClearance ? listPrice : 0,
+  };
+}
+
 export function loadHeaderFooter() {
   new MainHeader({
     target: document.querySelector("#main-header"),
@@ -48,14 +76,6 @@ export function loadHeaderFooter() {
   });
 }
 
-// export function removeItem(btn) {
-//   const id = btn.dataset.Id;
-//   console.log("dataset.Id", id);
-//   let cart = getLocalStorage("so-cart");
-//   cart = cart.filter(item => item.Id !== id);
-//   setLocalStorage("so-cart", cart);
-//   updateCartCount();
-// }
 
 export function removeItem(itemId) {
   let cart = getLocalStorage("so-cart") || [];

@@ -1,9 +1,8 @@
 <script>
   import { getData } from "../productData.mjs";
   import { onMount } from 'svelte';
+  import { getDiscountedPrice } from '../utils.mjs';
 
-
-  // this is how we make a prop in svelte
   export let category;
 
   let promise = getData(category);
@@ -18,11 +17,10 @@
   let alerts = [];
 
   onMount(async () => {
-  const response = await fetch('../json/alerts.json');
-  alerts = await response.json();
-  console.log('Alert/s:', alerts);
-});
-
+    const response = await fetch('../json/alerts.json');
+    alerts = await response.json();
+    console.log('Alert/s:', alerts);
+  });
 </script>
 
 {#each alerts as { message, backgroundColor }}
@@ -31,10 +29,7 @@
   </div>
 {/each}
 
-
-
 <section class="products-container">
-  <!-- <h2>Top Products: {category}</h2> -->
   <h2>Top Products: {capitalizeFirstLetter(category)}</h2>
 
   {#await promise}
@@ -54,7 +49,10 @@
               alt={product.Brand["Name"]} />
             <h3 class="card__brand">{product.Brand["Name"]}</h3>
             <h2 class="card__name">{product.NameWithoutBrand}</h2>
-            <p class="product-card__price">${product.ListPrice}</p>
+            <!-- <p>${product.IsClearance ? (product.FinalPrice * 0.2).toFixed(2) : "No"}</p>  -->
+            <p class="product-card__price list_price">List Price: ${product.ListPrice}</p>
+            <p class="product-card__price discount">Discount: ${product.IsClearance ? (product.FinalPrice * 0.2).toFixed(2) : "0.00"}</p> <!-- Display the discount amount -->
+            <p class="product-card__price final_price">Final Price: ${getDiscountedPrice(product).finalPrice}</p> 
           </a>
         </li>
       {/each}
