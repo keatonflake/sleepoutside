@@ -71,13 +71,4 @@
       </li>
     {/each}
   </ul>
-  <!-- Checkout button -->
-  <div class="checkOutButton">
-    <a
-      href="/checkout/index.html"
-      type="button"
-      class="cart-checkout"
-      id="checkOut">Checkout</a
-    >
-  </div>
 </div>
