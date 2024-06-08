@@ -348,6 +348,27 @@ img.divider {
   /* align-items: end; */
 }
 
+.checkout-button{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1em;
+  margin: 1em auto;
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 16px;
+  max-width: 25%;
+  border: 1px solid black;
+}
+
+.checkout-button:hover {
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+}
+
 .cart_total p {
   margin-right: 30px;
   background-color: #a4b8c4;

@@ -1,17 +1,5 @@
 import { cartCount } from "./stores.mjs";
-import { getLocalStorage } from "./utils.mjs";
-
-function getCartTotal() {
-  const cartItems = getLocalStorage("so-cart");
-
-  if (cartItems === undefined) return;
-
-  let cartTotal = 0;
-  cartItems.forEach((item) => {
-    cartTotal += item.FinalPrice * item.Quantity;
-  });
-  return cartTotal.toFixed(2);
-}
+import { getLocalStorage, getCartTotal} from "./utils.mjs";
 
 function getNumOfCartItems() {
   const cartItems = getLocalStorage("so-cart") || [];
