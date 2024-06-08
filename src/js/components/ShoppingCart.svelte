@@ -47,7 +47,7 @@
         <p class="cart-card__quantity blue">Quantity: {item.Quantity}</p>
         <!-- <p class="cart-card__price blue">${(item.ListPrice * item.Quantity).toFixed(2)}</p> -->
         <p class="cart-card__price blue">
-          ${getDiscountedPrice(item).finalPrice * item.Quantity}
+          ${(getDiscountedPrice(item).finalPrice * item.Quantity).toFixed(2)}
         </p>
 
         <!-- Cart buttons, removed, decrease, and increase   -->
