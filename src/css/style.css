@@ -53,20 +53,19 @@ header {
 
 @keyframes growShrink {
   0% {
-      transform: scale(1);
+    transform: scale(1);
   }
   50% {
-      transform: scale(1.5);
+    transform: scale(1.5);
   }
   100% {
-      transform: scale(1);
+    transform: scale(1);
   }
 }
 
 .animate {
   animation: growShrink 2s ease-in-out;
 }
-
 
 .hero {
   position: relative;
@@ -135,7 +134,7 @@ header {
 /* End cart icon styles */
 
 .mission {
-  font-family: "Merriweather", serif; 
+  font-family: "Merriweather", serif;
   font-size: 1.2em;
   line-height: 1.5;
   color: #ffffff;
@@ -303,7 +302,7 @@ img.divider {
 .product-detail__add {
   margin-top: 20px;
   display: flex;
-  justify-content: center; 
+  justify-content: center;
 }
 
 .product-card__price.discount {
@@ -468,39 +467,36 @@ img.divider {
   }
 
   section.mission-section {
-    background-color: #f9f9f9; 
-    padding: 2rem; 
-    border-radius: 10px; 
-    text-align: center; 
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
-    margin: 2rem auto; 
+    background-color: #f9f9f9;
+    padding: 2rem;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 2rem auto;
   }
 
   section.mission-section:hover {
     /* background-color: #e0f7fa;  */
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); 
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
   }
 
-
   section.mission-section h2 {
-    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', sans-serif;
-    font-size: 2rem; 
-    color: #333; 
+    font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+      sans-serif;
+    font-size: 2rem;
+    color: #333;
     margin-bottom: 1rem;
     font-style: oblique;
     font-weight: bolder;
   }
 
   section.mission-section p {
-    font-family: 'Gill Sans', 'Gill Sans MT', 'Trebuchet MS', sans-serif;
-    font-size: 1.5rem; 
-    color: #666; 
-    line-height: 1.6; 
-    margin-bottom: 1rem; 
+    font-family: "Gill Sans", "Gill Sans MT", "Trebuchet MS", sans-serif;
+    font-size: 1.5rem;
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 1rem;
   }
-
-
-
 
   .cart-card {
     font-size: inherit;
@@ -633,48 +629,71 @@ img.category-link {
   font-family: "Times New Roman", Times, serif;
   /* float: right; */
   /* width: 50%; */
-
-  }
+}
 
 /* News letter styling */
-  .newsletter {
-    background-color: #f9f9f9;
-    padding: 20px;
-    margin-top: 20px;
-    margin-bottom: 80px;
-    border-radius: 5px;
-    text-align: center;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  }
-  
-  .newsletter h2 {
-    margin-bottom: 10px;
-  }
-  
-  .newsletter form {
-    margin-bottom: 10px;
-  }
-  
-  .newsletter label {
-    margin-bottom: 5px;
-  }
-  
-  .newsletter input[type="email"] {
-    padding: 10px;
-    /* margin-bottom: 10px; */
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  
-  .newsletter button {
-    padding: 10px 20px;
-    background-color: #333;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .newsletter button:hover {
-    background-color: var(--secondary-color);
-  }
+.newsletter {
+  background-color: #f9f9f9;
+  padding: 20px;
+  margin-top: 20px;
+  margin-bottom: 80px;
+  border-radius: 5px;
+  text-align: center;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.newsletter h2 {
+  margin-bottom: 10px;
+}
+
+.newsletter form {
+  margin-bottom: 10px;
+}
+
+.newsletter label {
+  margin-bottom: 5px;
+}
+
+.newsletter input[type="email"] {
+  padding: 10px;
+  /* margin-bottom: 10px; */
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.newsletter button {
+  padding: 10px 20px;
+  background-color: #333;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.newsletter button:hover {
+  background-color: var(--secondary-color);
+}
+
+/* Check out button styles */
+.checkOutButton {
+  text-align: center;
+}
+
+.cart-checkout {
+  display: inline-block;
+  padding: 10px 20px;
+  margin: 10px;
+  font-size: 16px;
+  color: var(--dark-grey);
+  background-color: var(--primary-color);
+  border: none;
+  border-radius: 5px;
+  text-decoration: none;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.cart-checkout:hover {
+  background-color: var(--secondary-color);
+}

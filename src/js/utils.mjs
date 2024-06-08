@@ -10,6 +10,8 @@ export function getLocalStorage(key) {
   return JSON.parse(localStorage.getItem(key));
 }
 
+getLocalStorage
+
 // Save data to local storage
 export function setLocalStorage(key, data) {
   localStorage.setItem(key, JSON.stringify(data));

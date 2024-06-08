@@ -1,5 +1,10 @@
 <script>
-  import { getLocalStorage, removeItem, updateCartItem } from "../utils.mjs";
+  import {
+    getLocalStorage,
+    removeItem,
+    updateCartItem,
+    getDiscountedPrice,
+  } from "../utils.mjs";
 
   let cartItems = getLocalStorage("so-cart") || [];
 
@@ -21,7 +26,7 @@
   <h2 class="shopping-cartHeader">Shopping Cart</h2>
   <div class="hr-container">
     <span class="price-text">Price</span>
-    <hr class="custom-hr" />
+    <hr class="custom-hr" >
   </div>
 </section>
 
@@ -29,23 +34,50 @@
   <ul class="product-list">
     {#each cartItems as item (item.Id)}
       <li class="cart-card divider">
-        <a href="../product_pages/index.html?product={item.Id}" class="cart-card__image">
-          <img src={item.Images.PrimaryMedium} alt={item.Name} />
+        <a
+          href="../product_pages/index.html?product={item.Id}"
+          class="cart-card__image"
+        >
+          <img src={item.Images.PrimaryMedium} alt={item.Name}>
         </a>
         <a href="#">
           <h2 class="card__name">{item.Name}</h2>
         </a>
         <p class="cart-card__color">{item.Colors[0].ColorName}</p>
         <p class="cart-card__quantity blue">Quantity: {item.Quantity}</p>
-        <p class="cart-card__price blue">${(item.ListPrice * item.Quantity).toFixed(2)}</p>
+        <!-- <p class="cart-card__price blue">${(item.ListPrice * item.Quantity).toFixed(2)}</p> -->
+        <p class="cart-card__price blue">
+          ${(getDiscountedPrice(item).finalPrice * item.Quantity).toFixed(2)}
+        </p>
+
+        <!-- Cart buttons, removed, decrease, and increase   -->
         <div class="cart-card__buttons">
-          <!-- <button class="cart-remove" data-id={item.Id} id="removeFromCart">Remove</button> -->
-          <button class="cart-remove" on:click={() => handleRemoveItem(item.Id)} id="removeFromCart">Remove</button>
-          <!-- <button class="cart-remove" on:click={() => handleRemoveItem(item.Id)}>Remove</button> -->
-          <button class="cart-decrease" on:click={() => handleUpdateCartItem(item.Id, false)} id="decreaseQuantity">➖</button>
-          <button class="cart-increase" on:click={() => handleUpdateCartItem(item.Id, true)} id="increaseQuantity">➕</button>
+          <button
+            class="cart-remove"
+            on:click={() => handleRemoveItem(item.Id)}
+            id="removeFromCart">Remove</button
+          >
+          <button
+            class="cart-decrease"
+            on:click={() => handleUpdateCartItem(item.Id, false)}
+            id="decreaseQuantity">➖</button
+          >
+          <button
+            class="cart-increase"
+            on:click={() => handleUpdateCartItem(item.Id, true)}
+            id="increaseQuantity">➕</button
+          >
         </div>
       </li>
     {/each}
   </ul>
+  <!-- Checkout button -->
+  <div class="checkOutButton">
+    <a
+      href="/checkout/index.html"
+      type="button"
+      class="cart-checkout"
+      id="checkOut">Checkout</a
+    >
+  </div>
 </div>
