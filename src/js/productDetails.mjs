@@ -1,6 +1,6 @@
-import { findProductById } from "./productData.mjs";
+import { findProductById } from "./externalServices.mjs";
 import { cartCount } from "./stores.mjs";
-import { setLocalStorage, getLocalStorage, getCartCount } from "./utils.mjs";
+import { setLocalStorage, getLocalStorage, getCartCount, getDiscountedPrice } from "./utils.mjs";
 
 export default async function productDetails(productId, selector) {
   // Get current product object
@@ -46,14 +46,14 @@ function addToCart(newProduct) {
 }
 
 function growAndShrink() {
-  const image = document.getElementById('cart_icon');
-  image.classList.remove('animate');
+  const image = document.getElementById("cart_icon");
+  image.classList.remove("animate");
   
   // Force reflow to ensure the animation can restart
   void image.offsetWidth;
 
   requestAnimationFrame(() => {
-    image.classList.add('animate');
+    image.classList.add("animate");
   });
 }
 
@@ -66,7 +66,11 @@ function productDetailsTemplate(newProduct) {
     src="${newProduct.Images.PrimaryLarge}"
     alt="${newProduct.Name}"
   />
-  <p class="product-card__price">$${newProduct.FinalPrice}</p>
+
+  <p class="product-card__price"> Listed Price: $${newProduct.FinalPrice}</p>
+  <p class="product-card__price discount">Discount: ${newProduct.IsClearance ? (newProduct.FinalPrice * 0.2).toFixed(2) : "0.00"}</p> <!-- Display the discount amount -->
+  <p class="product-card__price final_price">Final Price: ${getDiscountedPrice(newProduct).finalPrice}</p> 
+
   <p class="product__color">${newProduct.Colors[0].ColorName}</p>
   <p class="product__description">
     ${newProduct.DescriptionHtmlSimple}
