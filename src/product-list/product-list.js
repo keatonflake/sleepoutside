@@ -1,5 +1,5 @@
 import ProductList from "../js/components/ProductList.svelte";
-import { loadHeaderFooter, getParam} from "../js/utils.mjs";
+import { loadHeaderFooter, getParam } from "../js/utils.mjs";
 
 loadHeaderFooter();
 

@@ -1,12 +1,12 @@
 <script>
-  import { getData } from "../productData.mjs";
+  import { getProductsByCategory  } from "../externalServices.mjs";
   import { onMount } from 'svelte';
   import { getDiscountedPrice } from '../utils.mjs';
 
   export let category;
 
-  let promise = getData(category);
-  console.log("Promise getData:", promise);
+  let promise = getProductsByCategory(category);
+  console.log("Promise getProductsByCategory:", promise);
 
   // Function to capitalize the first letter
   function capitalizeFirstLetter(string) {

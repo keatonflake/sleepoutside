@@ -33,7 +33,9 @@ function checkIfCartIsEmpty() {
 }
 
 function cartTotalBanner() {
-  const banner = `<div class="cart_total"><p>Subtotal (${getNumOfCartItems()} ${getNumOfCartItems() === 1 ? "item" : "items"}): $${getCartTotal()} </p></div>`;
+  const banner = `<div class="cart_total"><p>Subtotal (${getNumOfCartItems()} ${
+    getNumOfCartItems() === 1 ? "item" : "items"
+  }): $${getCartTotal()} </p></div>`;
   return banner;
 }
 
