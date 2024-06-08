@@ -52,6 +52,18 @@ export function getCartCount() {
 //   }
 // }
 
+export function getCartTotal() {
+  const cartItems = getLocalStorage("so-cart");
+
+  if (cartItems === undefined) return;
+
+  let cartTotal = 0;
+  cartItems.forEach((item) => {
+    cartTotal += item.FinalPrice * item.Quantity;
+  });
+  return cartTotal.toFixed(2);
+}
+
 
 export function getDiscountedPrice(product) {
   let finalPrice = product.FinalPrice;

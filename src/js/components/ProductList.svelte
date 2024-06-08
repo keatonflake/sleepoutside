@@ -1,5 +1,5 @@
 <script>
-  import { getProductsByCategory  } from "../externalServices.mjs";
+  import { getProductsByCategory } from "../externalServices.mjs";
   import { onMount } from 'svelte';
   import { getDiscountedPrice } from '../utils.mjs';
 
