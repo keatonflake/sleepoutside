@@ -1,5 +1,5 @@
 <script>
-  import { getLocalStorage, getCartTotal, getCartCount } from "../utils.mjs";
+  import { getLocalStorage, getCartTotal, getCartCount, getDiscountedPrice } from "../utils.mjs";
   import { checkout } from "../externalServices.mjs";
 
   let fName = "";
@@ -15,6 +15,7 @@
   let tax = 0;
   let shipping = 0;
   let total = 0;
+  let list = [];
 
   const validateForm = () => {
     formValid =
@@ -45,6 +46,15 @@
       price: item.FinalPrice,
       quantity: item.Quantity,
     }));
+  };
+
+    // Initial setup
+    const init = function () {
+    console.log("Initializing checkout was called...");
+    list = getLocalStorage("so-cart") || [];
+    console.log("Retrieved list from localStorage:", list);
+    calculateItemSummary();
+    calculateOrderTotal();
   };
 
   const handleSubmit = async (event) => {
@@ -149,6 +159,11 @@
 
   <fieldset>
     <legend>Order Summary</legend>
+    {#each list as item}
+    <p>
+      {item?.Quantity || 0} x  {(item?.Name || 'Item Name').split(' - ')[0]} — ${(getDiscountedPrice(item)?.finalPrice * (item?.Quantity || 0)).toFixed(2)}
+    </p>
+  {/each}
     <p>Item Subtotal: ${parseFloat(getCartTotal()).toFixed(2)}</p>
     <p>Shipping: ${shipping.toFixed(2)}</p>
     <p>Tax: ${tax.toFixed(2)}</p>
