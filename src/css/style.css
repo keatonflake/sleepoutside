@@ -804,4 +804,9 @@ main.checkout {
   font-size: 18px;
 }
 
+header#divider-success{
+  display: flex;
+  flex-direction: column;
+}
+
 
