@@ -41,7 +41,9 @@
     />
     {:then products}
     <ul class="product-list-Home">
-      {#each products as product}
+      <!-- Sort the products by NameWithoutBrand in alphabetical order (A-Z) -->
+      <!-- {#each products as product} -->
+      {#each [...products].sort((a, b) => a.NameWithoutBrand.toLowerCase() > b.NameWithoutBrand.toLowerCase() ? 1 : -1) as product}
         <li class="product-card">
           <a href={`../../product_pages/index.html?product=${product.Id}`}>
             <img
