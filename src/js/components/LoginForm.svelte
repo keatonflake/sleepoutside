@@ -1,59 +1,86 @@
 <script>
+  import { onMount } from "svelte";
   import { getParam } from "../utils.mjs";
   import { loginRequest } from "../externalServices.mjs";
   import { alertMessage, getLocalStorage, setLocalStorage } from "../utils.mjs";
 
+  let email = "";
+  let password = "";
+  let formValid = false;
   const tokenKey = "so-token";
 
-  let username = "user1@email.com";
-  let password = "user1";
-  let formValid = false;
-
   const validateForm = () => {
-    formValid = username.trim() !== "" && password.trim() !== "";
+    formValid = email.trim() !== "" && password.trim() !== "";
+    console.log("Form validation status:", formValid);
   };
 
-  export async function login(creds, redirect = "/") {
+  const login = async (creds, redirect = "/") => {
     try {
+      console.log("Login attempt with credentials:", creds);
       const token = await loginRequest(creds);
       setLocalStorage(tokenKey, token);
-      // because of the default arg provided above...if no redirect is provided send them Home.
+      console.log("Login successful, token stored:", token);
       window.location = redirect;
     } catch (err) {
-      alertMessage(err.message.message);
+    console.error("Login error:", err);
+    let errorMessage = "An error occurred during login.";
+    if (err.message && typeof err.message === 'object') {
+      errorMessage = err.message.message || err.message.status;
+    } else if (err.message) {
+      errorMessage = err.message;
     }
+    document.getElementById("loginErrorMessage").innerText = errorMessage;
   }
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const redirect = getParam("redirect");
-    login(username, password, redirect);
+    validateForm();
+    if (formValid) {
+      const redirect = getParam("redirect");
+      console.log("Form is valid. Submitting login form with redirect:", redirect);
+      login({ email, password }, redirect);
+    } else {
+      console.warn("Form is invalid. Cannot submit.");
+    }
   };
+
+  onMount(() => {
+    const loginForm = document.getElementById("loginForm");
+    const loginButton = document.getElementById("loginButton");
+
+    loginForm.addEventListener("input", () => {
+      validateForm();
+      loginButton.disabled = !formValid;
+    });
+
+    loginForm.addEventListener("submit", handleSubmit);
+  });
 </script>
 
-<fieldset>
-  <legend>Login</legend>
-  <label for="username">
-    Username:
-    <input
-      type="text"
-      id="username"
-      bind:value={username}
-      on:input={validateForm}
-      required
-    />
-  </label>
-  <label for="password">
-    Password:
-    <input
-      type="password"
-      id="password"
-      bind:value={password}
-      on:input={validateForm}
-      required
-    />
-  </label>
-  <button id="loginButton" type="submit" disabled={!formValid} on:click={handleSubmit}
-    >Submit</button
-  >
-</fieldset>
+<form id="loginForm" class="login-form">
+  <fieldset>
+    <legend>Login</legend>
+    <label for="email">
+      email:
+      <input type="text" id="email" bind:value={email} required />
+    </label>
+    <label for="password">
+      Password:
+      <input type="password" id="password" bind:value={password} required />
+    </label>
+    <button id="loginButton" type="submit" disabled={!formValid}>Submit</button>
+  </fieldset>
+  <div id="loginErrorMessage" class="error-message"></div>
+</form>
+
+<style>
+  .login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .error-message {
+    color: red;
+  }
+</style>

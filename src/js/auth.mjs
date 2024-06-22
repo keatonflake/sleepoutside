@@ -9,6 +9,7 @@ export async function login(creds, redirect = "/") {
         setLocalStorage(tokenKey, token);
         // because of the default arg provided above...if no redirect is provided send them Home.
         window.location = redirect;
+        console.log(" Login token:", token);
     } catch (err) {
         alertMessage(err.message.message);
     }

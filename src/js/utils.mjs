@@ -172,66 +172,6 @@ export function alertMessage(messages, scroll = true, duration = 3000) {
       }, duration);
     }
 
-// styles for the alert
-const style = document.createElement("style");
-style.innerHTML = `
- .alert-container {
-  // position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 9999;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 20px;
-  box-sizing: border-box;
-}
-
-.alert2 {
-  background-color: #f8d7da;
-  color: #721c24;
-  padding: 15px;
-  position: relative;
-  margin-bottom: 10px;
-  border: 1px solid #f5c6cb;
-  border-radius: 4px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  max-width: 90%;
-  width: 500px;
-  box-sizing: border-box;
-}
-
-.alert2-content {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 10px;
-  flex-wrap: wrap;
-}
-
-.alert2-content span {
-  font-weight: 500;
-  font-size: 16px;
-  flex-grow: 1;
-}
-
-.alert2-close {
-  background: none;
-  border: none;
-  font-size: 20px;
-  cursor: pointer;
-  padding: 5px;
-  margin-left: 10px;
-}
-
-.alert2-close:hover {
-  color: #721c24;
-}
-`;
-document.head.appendChild(style);
-
-
 
 // Call attachEventListeners once the DOM is fully loaded
 document.addEventListener("DOMContentLoaded", attachEventListeners);
