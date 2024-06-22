@@ -38,3 +38,44 @@ export async function checkout(order) {
   }
   return response.json();
 }
+
+// get orders
+export async function loginRequest(user) {
+  const options = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(user),
+  };
+  const response = await fetch(baseURL + "login", options).then(convertToJson);
+  return response.accessToken;
+}
+
+// login
+// export async function loginRequest(creds) {
+//   console.log("The creds in the external services fuction are:" + creds);
+//   const response = await fetch(baseURL + "login/", {
+//     method: "POST",
+//     headers: {
+//       "Content-Type": "application/json",
+//     },
+//     body: JSON.stringify(creds),
+//   });
+//   return convertToJson(response);
+// }
+
+export async function getOrders(token) {
+  const options = {
+    method: "GET",
+    // the server will reject our request if we don't include the Authorization header with a valid token!
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+  const response = await fetch(baseURL + "orders", options).then(convertToJson);
+  response.forEach(element => {
+    console.log(element);
+  });
+  return response;
+}
