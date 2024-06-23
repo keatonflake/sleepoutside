@@ -32,6 +32,7 @@ header {
   display: flex;
   justify-content: space-between;
   padding: 0 10px;
+
 }
 .logo {
   line-height: 60px;
@@ -122,6 +123,7 @@ header {
   padding-top: 1em;
   position: relative;
   text-align: center;
+  margin-left: 24%;
 }
 
 .cart svg {
@@ -472,7 +474,7 @@ img.divider {
     border-radius: 10px;
     text-align: center;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    margin: 2rem auto;
+    /* margin: 2rem auto; */
   }
 
   section.mission-section:hover {
@@ -483,10 +485,10 @@ img.divider {
   section.mission-section h2 {
     font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
       sans-serif;
-    font-size: 2rem;
+    font-size: 1.5rem;
     color: #333;
     margin-bottom: 1rem;
-    font-style: oblique;
+    /* font-style: oblique; */
     font-weight: bolder;
   }
 
@@ -509,6 +511,7 @@ img.divider {
 
   html {
     scroll-behavior: smooth;
+    width: 100%;
     /* border: #f0a868 1px solid; */
     /* max-width: 1000px; */
     /* background-color: #525b0f; */
