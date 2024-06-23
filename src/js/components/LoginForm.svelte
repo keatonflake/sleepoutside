@@ -5,51 +5,52 @@
 
   const tokenKey = "so-token";
 
-  let username = "";
+  let email = "";
   let password = "";
   let formValid = false;
   let errorMessage = "";
 
   const validateForm = () => {
-    formValid = username.trim() !== "" && password.trim() !== "";
+    formValid = email.trim() !== "" && password.trim() !== "";
     console.log("Form valid:", formValid);
   };
 
-  async function login(creds, redirect = "/") {
-    console.log("Attempting login for username:", creds.username);
-
+  const login = async (creds, redirect = "/orders/index.html") => {
     try {
+      console.log("Login attempt with credentials:", creds);
       const token = await loginRequest(creds);
       setLocalStorage(tokenKey, token);
-      alertMessage(["Login successful. Redirecting..."], true);
-      window.location = redirect;      
+      console.log("Login successful, token stored:", token);
+      window.location = redirect;
     } catch (err) {
-      console.error("Login error:", err);
-      errorMessage = "An error occurred during login.";
-      if (err.message && typeof err.message === 'object') {
-        errorMessage = err.message.message || err.message.status;
-      } else if (err.message) {
-        errorMessage = err.message;
-      }
+    console.error("Login error:", err);
+    let errorMessage = "An error occurred during login.";
+    if (err.message && typeof err.message === 'object') {
+      errorMessage = err.message.message || err.message.status;
+    } else if (err.message) {
+      errorMessage = err.message;
     }
+    document.getElementById("loginErrorMessage").innerText = errorMessage;
   }
+  };
+
 
   const handleSubmit = (event) => {
     event.preventDefault();
     const redirect = getParam("redirect");
-    login({ username, password }, redirect);
+    login({ email, password }, redirect);
   };
 </script>
 
 <form on:submit={handleSubmit}>
   <fieldset>
     <legend>Login</legend>
-    <label for="username">
-      Username:
+    <label for="email">
+      email:
       <input
         type="text"
-        id="username"
-        bind:value={username}
+        id="email"
+        bind:value={email}
         on:input={validateForm}
         required
       />
