@@ -1,21 +1,17 @@
 <script>
   import { getParam } from "../utils.mjs";
   import { loginRequest } from "../externalServices.mjs";
-  import { alertMessage, getLocalStorage, setLocalStorage } from "../utils.mjs";
+  import { setLocalStorage } from "../utils.mjs";
 
   const tokenKey = "so-token";
 
   let email = "";
   let password = "";
-  let formValid = false;
   let errorMessage = "";
 
-  const validateForm = () => {
-    formValid = email.trim() !== "" && password.trim() !== "";
-    console.log("Form valid:", formValid);
-  };
+  $: formValid = email.trim() !== "" && password.trim() !== "";
 
-  const login = async (creds, redirect = "/orders/index.html") => {
+  const login = async (creds, redirect = "/") => {
     try {
       console.log("Login attempt with credentials:", creds);
       const token = await loginRequest(creds);
@@ -23,17 +19,15 @@
       console.log("Login successful, token stored:", token);
       window.location = redirect;
     } catch (err) {
-    console.error("Login error:", err);
-    let errorMessage = "An error occurred during login.";
-    if (err.message && typeof err.message === 'object') {
-      errorMessage = err.message.message || err.message.status;
-    } else if (err.message) {
-      errorMessage = err.message;
+      console.error("Login error:", err);
+      errorMessage = "An error occurred during login.";
+      if (err.message && typeof err.message === 'object') {
+        errorMessage = err.message.message || err.message.status;
+      } else if (err.message) {
+        errorMessage = err.message;
+      }
     }
-    document.getElementById("loginErrorMessage").innerText = errorMessage;
-  }
   };
-
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -46,12 +40,12 @@
   <fieldset>
     <legend>Login</legend>
     <label for="email">
-      email:
+      Email:
       <input
-        type="text"
+        type="email"
         id="email"
+        placeholder="Enter your email"
         bind:value={email}
-        on:input={validateForm}
         required
       />
     </label>
@@ -61,13 +55,12 @@
         type="password"
         id="password"
         bind:value={password}
-        on:input={validateForm}
+        placeholder="Enter your password"
         required
       />
     </label>
     <button id="loginButton" type="submit" disabled={!formValid}>Submit</button>
   </fieldset>
-  <br>
 </form>
 
 {#if errorMessage}
@@ -101,7 +94,7 @@
     margin-bottom: 10px;
   }
 
-  input[type="text"],
+  input[type="email"],
   input[type="password"] {
     width: 100%;
     padding: 8px;
