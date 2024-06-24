@@ -49,7 +49,7 @@
 <style>
   sup {
     background-color: orange;
-    color: white;
+    color: black;
     border-radius: 50%;
     padding: 2px 4px;
     font-size: 0.7rem;
