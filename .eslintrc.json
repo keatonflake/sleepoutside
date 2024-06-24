@@ -49,6 +49,7 @@
         "allow": ["resolve", "reject", "done", "next", "err", "error"]
       }
     ],
-    "no-unused-expressions": "off"
+    "no-unused-expressions": "off",
+    "import/namespace": "off" // fix vite warnings error
   }
 }
