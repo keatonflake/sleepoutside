@@ -1,7 +1,7 @@
 <script>
   import { getProductsByCategory } from "../externalServices.mjs";
-  import { onMount } from 'svelte';
-  import { getDiscountedPrice } from '../utils.mjs';
+  import { onMount } from "svelte";
+  import { getDiscountedPrice } from "../utils.mjs";
 
   export let category;
 
@@ -17,9 +17,9 @@
   let alerts = [];
 
   onMount(async () => {
-    const response = await fetch('../json/alerts.json');
+    const response = await fetch("../json/alerts.json");
     alerts = await response.json();
-    console.log('Alert/s:', alerts);
+    console.log("Alert/s:", alerts);
   });
 </script>
 
@@ -39,32 +39,46 @@
       src="../images/loading_image.gif"
       alt="loading page gif"
     />
-    {:then products}
+  {:then products}
     <ul class="product-list-Home">
       <!-- Sort the products by NameWithoutBrand in alphabetical order (A-Z) -->
       <!-- {#each products as product} -->
-      {#each [...products].sort((a, b) => a.NameWithoutBrand.toLowerCase() > b.NameWithoutBrand.toLowerCase() ? 1 : -1) as product}
+      {#each [...products].sort( (a, b) => (a.NameWithoutBrand.toLowerCase() > b.NameWithoutBrand.toLowerCase() ? 1 : -1), ) as product}
         <li class="product-card">
           <a href={`../../product_pages/index.html?product=${product.Id}`}>
-            <img
-              src={product.Images.PrimaryMedium}
-              alt={product.Brand["Name"]} />
+            <!-- Product images scaled to fit all devices with different screen sizes -->
+            <picture>
+              <source media="(max-width: 460px)" srcset={product.Images.PrimarySmall} />
+              <source media="(max-width: 500px)" srcset={product.Images.PrimaryMedium} />
+              <source media="(min-width: 501px)" srcset={product.Images.PrimaryLarge} />
+              <img src={product.Images.PrimaryMedium} alt={product.Brand.Name} />
+            </picture>
+
             <h3 class="card__brand">{product.Brand["Name"]}</h3>
             <h2 class="card__name">{product.NameWithoutBrand}</h2>
             <!-- <p>${product.IsClearance ? (product.FinalPrice * 0.2).toFixed(2) : "No"}</p>  -->
-            <p class="product-card__price list_price">List Price: ${product.ListPrice}</p>
-            <p class="product-card__price discount">Discount: ${product.IsClearance ? (product.FinalPrice * 0.2).toFixed(2) : "0.00"}</p> <!-- Display the discount amount -->
-            <p class="product-card__price final_price">Final Price: ${getDiscountedPrice(product).finalPrice}</p> 
+            <p class="product-card__price list_price">
+              List Price: ${product.ListPrice}
+            </p>
+            <p class="product-card__price discount">
+              Discount: ${product.IsClearance
+                ? (product.FinalPrice * 0.2).toFixed(2)
+                : "0.00"}
+            </p>
+            <!-- Display the discount amount -->
+            <p class="product-card__price final_price">
+              Final Price: ${getDiscountedPrice(product).finalPrice}
+            </p>
           </a>
         </li>
       {/each}
     </ul>
   {:catch error}
-    {#if error.message === 'No project found'}
-      {console.log('No project is found for that item')}
+    {#if error.message === "No project found"}
+      {console.log("No project is found for that item")}
       <p>No project is found for that item</p>
     {:else}
-      {console.log('Error:', error)}
+      {console.log("Error:", error)}
       <p>Error loading products: {error.message}</p>
     {/if}
   {/await}
