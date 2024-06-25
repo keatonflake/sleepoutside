@@ -1,7 +1,18 @@
 <script>
-    import { cartCount } from "../stores.mjs";
+  import { cartCount } from "../stores.mjs";
+  import { onMount } from 'svelte';
 
+  onMount(() => {
+    const loginButton = document.getElementById('loginButton');
+    if (loginButton) {
+      loginButton.onclick = function() {
+        var baseUrl = window.location.origin;
+        window.open(baseUrl + '/login/index.html', '_blank');
+      };
+    }
+  });
 </script>
+
   
   <div class="logo">
     <img src="/images/noun_Tent_2517.svg" alt="tent logo" />
@@ -32,12 +43,28 @@
     </a>
   </div>
 
-  <style>
-    sup{
-        background-color: orange;
-        color: white;
-        border-radius: 50%;
-        padding: 2px 4px;
-        font-size: 0.7rem;
-    }
-  </style>
+  <!-- <button class="login-button" id="loginButton" onclick="window.open('./login/index.html', '_blank')">Login</button>   -->
+<button class="login-button" id="loginButton">Login</button>
+
+<style>
+  sup {
+    background-color: orange;
+    color: black;
+    border-radius: 50%;
+    padding: 2px 4px;
+    font-size: 0.7rem;
+  }
+
+  .login-button {
+    background-color: #f0a868; 
+    color: black;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    margin-left: 10px; 
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    font-weight: bold;
+  }
+</style>

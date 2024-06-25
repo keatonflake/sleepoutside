@@ -4,5 +4,5 @@ import { loadHeaderFooter } from "./utils.mjs";
 loadHeaderFooter();
 
 new CheckoutForm({
-    target: document.querySelector(".products"),
+  target: document.querySelector(".products"),
 });

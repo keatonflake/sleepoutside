@@ -172,6 +172,17 @@ export function alertMessage(messages, scroll = true, duration = 3000) {
       }, duration);
     }
 
+    export function filterProducts(products, searchTerm) {
+      if (!searchTerm) return products;
+      
+      const lowercaseSearchTerm = searchTerm.toLowerCase();
+      return products.filter(product => 
+        product.Name.toLowerCase().includes(lowercaseSearchTerm) ||
+        product.NameWithoutBrand.toLowerCase().includes(lowercaseSearchTerm) ||
+        product.Brand.Name.toLowerCase().includes(lowercaseSearchTerm)
+      );
+    }
+  
 // styles for the alert
 const style = document.createElement("style");
 style.innerHTML = `
