@@ -1,6 +1,9 @@
 import { resolve } from "path";
 import { defineConfig } from "vite";
 import { svelte } from "@sveltejs/vite-plugin-svelte";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 export default defineConfig({
   plugins: [svelte()],
@@ -22,7 +25,7 @@ export default defineConfig({
     },
   },
   server: {
-    // host: "0.0.0.0",
+    host: "0.0.0.0",
     port: process.env.PORT || 5173,
   }
 });
