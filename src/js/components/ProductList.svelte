@@ -69,7 +69,7 @@
               <source media="(max-width: 500px)" srcset={product.Images.PrimaryMedium} />
               <source media="(min-width: 501px)" srcset={product.Images.PrimaryLarge} />
               <!-- <img src={product.Images.PrimaryMedium} alt={product.Brand.Name} /> -->
-              <img src={'/images/sleepoutside/' + product.Images.PrimaryMedium} alt={product.Brand.Name} />
+              <img src={product.Images.PrimaryMedium} alt={product.Brand.Name} />
             </picture>
 
             <!-- <picture>
