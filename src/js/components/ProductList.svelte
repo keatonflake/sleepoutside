@@ -67,7 +67,7 @@
               <source media="(max-width: 500px)" srcset={product.Images.PrimaryMedium} />
               <source media="(min-width: 501px)" srcset={product.Images.PrimaryLarge} />
               <!-- <img src={product.Images.PrimaryMedium} alt={product.Brand.Name} /> -->
-              <img src={`/images${product.Images.PrimaryMedium}`} alt={product.Brand.Name} />
+              <img src={`/api/${product.Images.PrimaryMedium}`} alt={product.Brand.Name} />
             </picture>
 
             <h3 class="card__brand">{product.Brand.Name}</h3>
