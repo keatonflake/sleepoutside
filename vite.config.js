@@ -26,7 +26,8 @@ export default defineConfig({
   },
   server: {
     host: "0.0.0.0",
-    port: process.env.PORT || 5173,
+    // port: process.env.PORT || 5173,
+    port: process.env.VITE_SERVER_URL || 5173,
     proxy: {
       "/api": {
         target: "http://server-nodejs.cit.byui.edu:3000",
