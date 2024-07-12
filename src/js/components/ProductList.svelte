@@ -3,6 +3,8 @@
   import { onMount } from "svelte";
   import { getDiscountedPrice } from "../utils.mjs";
   import SearchBar from "./SearchBar.svelte";
+  // export let product;
+  // const baseURL = import.meta.env.VITE_BASE_URL;
 
   export let category;
 
@@ -66,8 +68,16 @@
               <source media="(max-width: 460px)" srcset={product.Images.PrimarySmall} />
               <source media="(max-width: 500px)" srcset={product.Images.PrimaryMedium} />
               <source media="(min-width: 501px)" srcset={product.Images.PrimaryLarge} />
-              <img src={product.Images.PrimaryMedium} alt={product.Brand.Name} />
+              <!-- <img src={product.Images.PrimaryMedium} alt={product.Brand.Name} /> -->
+              <img src={'../images/sleepoutside/' + product.Images.PrimaryMedium} alt={product.Brand.Name} />
             </picture>
+
+            <!-- <picture>
+              <source media="(max-width: 460px)" srcset={`${baseURL}images/sleepoutside/${product.Images.PrimarySmall}`} />
+              <source media="(max-width: 500px)" srcset={`${baseURL}images/sleepoutside/${product.Images.PrimaryMedium}`} />
+              <source media="(min-width: 501px)" srcset={`${baseURL}images/sleepoutside/${product.Images.PrimaryLarge}`} />
+              <img src={`/images/sleepoutside/${product.Images.PrimaryMedium}`} alt={product.Brand.Name} />
+            </picture> -->
 
             <h3 class="card__brand">{product.Brand.Name}</h3>
             <h2 class="card__name">{product.NameWithoutBrand}</h2>
