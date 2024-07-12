@@ -1,14 +1,21 @@
-const baseURL = import.meta.env.VITE_SERVER_URL;
+// const baseURL = import.meta.env.VITE_SERVER_URL;
+const baseURL = "/api/";
 
 async function convertToJson(res) {
-  const jsonResponse = await res.json();
-  if (res.ok) {
-    return jsonResponse;
-  } else {
-    // throw new Error("Bad Response");
-    throw { name: "servicesError", message: jsonResponse };
+  try {
+    const jsonResponse = await res.json();
+    if (res.ok) {
+      return jsonResponse;
+    } else {
+      throw { name: "servicesError", message: jsonResponse };
+    }
+  } catch (error) {
+    const textResponse = await res.text();
+    console.error("Response was not JSON:", textResponse);
+    throw { name: "servicesError", message: textResponse };
   }
 }
+
 
 export async function getProductsByCategory(category) {
   const response = await fetch(baseURL + `products/search/${category}`);
@@ -68,7 +75,7 @@ export async function loginRequest(user) {
 export async function getOrders(token) {
   const options = {
     method: "GET",
-    // the server will reject our request if we don't include the Authorization header with a valid token!
+    // the server will reject our request if we don"t include the Authorization header with a valid token!
     headers: {
       Authorization: `Bearer ${token}`,
     },
