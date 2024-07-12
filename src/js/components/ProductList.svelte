@@ -59,7 +59,9 @@
     <ul class="product-list-Home">
       {#each filteredProducts as product}
         <li class="product-card">
-          <a href={`../../product_pages/index.html?product=${product.Id}`}>
+          <a href={`../product_pages/index.html?product=${product.Id}`}>
+            <!-- <a href={`../../product_pages/index.html?product=${product.Id}`}> -->
+
             <picture>
               <source media="(max-width: 460px)" srcset={product.Images.PrimarySmall} />
               <source media="(max-width: 500px)" srcset={product.Images.PrimaryMedium} />
