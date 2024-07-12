@@ -1,9 +1,9 @@
 import { resolve } from "path";
 import { defineConfig } from "vite";
 import { svelte } from "@sveltejs/vite-plugin-svelte";
-import dotenv from "dotenv";
+// import dotenv from "dotenv";
 
-dotenv.config();
+// dotenv.config();
 
 export default defineConfig({
   plugins: [svelte()],
@@ -27,7 +27,9 @@ export default defineConfig({
   server: {
     host: "0.0.0.0",
     // port: process.env.PORT || 5173,
-    port: process.env.VITE_SERVER_URL || 5173,
+    // port: process.env.VITE_SERVER_URL || 5173,
+    port: 5173,
+
     proxy: {
       "/api": {
         target: "http://server-nodejs.cit.byui.edu:3000",
