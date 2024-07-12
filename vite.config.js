@@ -33,11 +33,6 @@ export default defineConfig({
         target: "http://server-nodejs.cit.byui.edu:3000",
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, "")
-      },
-      "/images": {
-        target: "http://server-nodejs.cit.byui.edu:3000/images",
-        changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/images/, ""),
       }
     }
   }
